@@ -1,0 +1,87 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "bundle.schema.json",
+  "title": "BundleCatalog",
+  "type": "object",
+  "required": ["products", "steps", "pricing", "initialState"],
+  "additionalProperties": false,
+  "properties": {
+    "products": {
+      "type": "array",
+      "items": {
+        "$ref": "product.schema.json"
+      }
+    },
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "icon", "nextStepLabel", "productIds"],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "icon": { "type": "string" },
+          "nextStepLabel": { "type": "string" },
+          "productIds": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "pricing": {
+      "type": "object",
+      "required": ["shipping", "financing", "satisfactionGuaranteeLabel"],
+      "additionalProperties": false,
+      "properties": {
+        "shipping": {
+          "type": "object",
+          "required": ["label", "price", "compareAtPrice"],
+          "properties": {
+            "label": { "type": "string" },
+            "price": { "type": "number" },
+            "compareAtPrice": { "type": "number" }
+          }
+        },
+        "financing": {
+          "type": "object",
+          "required": ["label", "monthlyAmount"],
+          "properties": {
+            "label": { "type": "string" },
+            "monthlyAmount": { "type": "number" }
+          }
+        },
+        "satisfactionGuaranteeLabel": { "type": "string" }
+      }
+    },
+    "initialState": {
+      "type": "object",
+      "required": ["activeStep", "selectedProducts", "activeVariants"],
+      "additionalProperties": false,
+      "properties": {
+        "activeStep": { "type": "integer", "minimum": 0 },
+        "selectedProducts": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "required": ["variants"],
+            "properties": {
+              "variants": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        },
+        "activeVariants": {
+          "type": "object",
+          "additionalProperties": { "type": "string" }
+        }
+      }
+    }
+  }
+}

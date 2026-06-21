@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "product.schema.json",
+  "title": "Product",
+  "type": "object",
+  "required": [
+    "id",
+    "name",
+    "category",
+    "description",
+    "image",
+    "price"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "category": {
+      "type": "string",
+      "enum": ["cameras", "sensors", "accessories", "plan"]
+    },
+    "description": {
+      "type": "string"
+    },
+    "image": {
+      "type": "string"
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0
+    },
+    "compareAtPrice": {
+      "type": "number",
+      "minimum": 0
+    },
+    "badge": {
+      "type": "string"
+    },
+    "learnMoreUrl": {
+      "type": "string"
+    },
+    "variants": {
+      "type": "array",
+      "items": {
+        "$ref": "variant.schema.json"
+      }
+    },
+    "metadata": {
+      "type": "string"
+    },
+    "isRequired": {
+      "type": "boolean"
+    },
+    "isMonthly": {
+      "type": "boolean"
+    }
+  }
+}
