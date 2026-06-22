@@ -26,15 +26,13 @@ export function ProductCard({ product }: ProductCardProps) {
   const hasVariants = Boolean(product.variants && product.variants.length > 0);
   const imageSrc = getVariantImage(product, activeVariantId);
 
-  console.log(product, "product");
-
   return (
     <Card
       className={cn(
         "relative p-[11px] h-full transition-all duration-150",
         isSelected
-          ? "border-2 border-[#4E2FD2B2] shadow-card"
-          : "border-2 border-transparent shadow-card hover:shadow-card-hover",
+          ? "border-2 border-[#4E2FD2B2]"
+          : "border-2 border-transparent hover:shadow-card-hover",
       )}
     >
       {product.badge ? (
@@ -55,7 +53,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
         <div className="flex flex-col flex-1 gap-[10px] min-w-0">
           <div>
-            <h3 className="text-base font-bold text-[#1F1F1F]">
+            <h3 className="text-base font-semibold text-[#1F1F1F]">
               {product.name}
             </h3>
             <p className="mt-2 text-xs leading-snug text-[#1F1F1FBF]">

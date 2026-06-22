@@ -40,7 +40,7 @@ export function Step({
         isOpen ? " bg-[#EDF4FF] rounded-[10px] py-[15px]" : "bg-transparent ",
       )}
     >
-      <span className="block px-[15px] mb-[5px] text-[10px] font-semibold uppercase  text-[#484848]">
+      <span className="block px-[15px] mb-[5px] text-xs font-semibold uppercase  text-[#484848]">
         {`Step ${index + 1} of ${totalSteps}`}
       </span>
 
@@ -54,7 +54,7 @@ export function Step({
           aria-expanded={isOpen}
           aria-controls={panelId}
           className={cn(
-            "flex w-full items-center gap-2 text-left transition-colors",
+            "flex gap-2 items-center w-full text-left transition-colors",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-indigo-500",
           )}
         >
@@ -67,13 +67,13 @@ export function Step({
             <StepIcon name={step.icon} />
           </span>
 
-          <h2 className="block truncate text-[#0B0D10] text-[22px]">
+          <h2 className="block font-semibold truncate text-[#0B0D10] text-[22px]">
             {step.title}
           </h2>
 
-          <span className="flex shrink-0 items-center gap-2 ml-auto">
+          <span className="flex gap-2 items-center ml-auto shrink-0">
             {isOpen ? (
-              <span className="whitespace-nowrap text-sm font-semibold text-indigo-600">
+              <span className="text-sm font-semibold text-indigo-600 whitespace-nowrap">
                 {`${selectedCount} selected`}
               </span>
             ) : null}
@@ -87,7 +87,7 @@ export function Step({
           id={panelId}
           role="region"
           aria-labelledby={headerId}
-          className="px-5 pb-6 pt-1"
+          className="px-5 pt-1 pb-2"
         >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {products.map((product, productIndex) => {
@@ -108,7 +108,7 @@ export function Step({
             })}
           </div>
 
-          <div className="mt-6 flex justify-center">
+          <div className="flex justify-center mt-6">
             <Button
               variant="outline"
               size="lg"

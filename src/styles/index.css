@@ -2,12 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@font-face {
+  font-family: "Glory";
+  src: url("../../assets/fonts/Glory-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+@font-face {
+  font-family: "Glory";
+  src: url("../../assets/fonts/Glory-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glory";
+  src: url("../../assets/fonts/Glory-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Glory";
+  src: url("../../assets/fonts/Glory-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    @apply font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
 }
