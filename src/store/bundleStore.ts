@@ -37,7 +37,8 @@ export const useBundleStore = create<BundleStore>((set, get) => ({
 
   setActiveStep: (step) => {
     const maxStep = bundleCatalog.steps.length - 1;
-    const nextStep = Math.min(Math.max(step, 0), maxStep);
+    // -1 is a valid "no step expanded" (collapsed) state for the accordion.
+    const nextStep = Math.min(Math.max(step, -1), maxStep);
 
     set({ activeStep: nextStep });
   },

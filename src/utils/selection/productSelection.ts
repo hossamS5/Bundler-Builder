@@ -1,5 +1,5 @@
-import type { Product } from '@/types';
-import { DEFAULT_VARIANT_ID } from '@/types';
+import type { Product } from "@/types";
+import { DEFAULT_VARIANT_ID } from "@/types";
 
 export function getProductVariantIds(product: Product): string[] {
   if (product.variants && product.variants.length > 0) {
@@ -44,7 +44,10 @@ export function getVariantImage(product: Product, variantId: string): string {
   return variant?.image ?? product.image;
 }
 
-export function getProductLineName(product: Product, variantId: string): string {
+export function getProductLineName(
+  product: Product,
+  variantId: string,
+): string {
   const variantName = getVariantDisplayName(product, variantId);
 
   if (!variantName) {

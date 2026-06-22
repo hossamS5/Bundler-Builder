@@ -3,18 +3,15 @@ import type {
   ReviewCategoryGroup,
   ReviewLineItem,
   SelectedProducts,
-} from '@/types';
-import {
-  REVIEW_CATEGORY_LABELS,
-  REVIEW_CATEGORY_ORDER,
-} from '@/types';
-import { bundleCatalog } from '@/data';
-import { buildPricingSummary } from '@/utils/pricing';
+} from "@/types";
+import { REVIEW_CATEGORY_LABELS, REVIEW_CATEGORY_ORDER } from "@/types";
+import { bundleCatalog } from "@/data";
+import { buildPricingSummary } from "@/utils/pricing";
 import {
   buildSelectedReviewLineItems,
   getSelectedCountPerStep,
   getSelectedProducts,
-} from '@/utils/selection/selectedProducts';
+} from "@/utils/selection/selectedProducts";
 
 export interface BundleSelectorContext {
   selectedProducts: SelectedProducts;
@@ -28,7 +25,9 @@ export function selectSelectedCountPerStep(context: BundleSelectorContext) {
   return getSelectedCountPerStep(context.selectedProducts);
 }
 
-export function selectReviewLineItems(context: BundleSelectorContext): ReviewLineItem[] {
+export function selectReviewLineItems(
+  context: BundleSelectorContext,
+): ReviewLineItem[] {
   return buildSelectedReviewLineItems(context.selectedProducts);
 }
 
@@ -48,7 +47,9 @@ export function selectSubtotal(context: BundleSelectorContext): number {
   return buildPricingSummary(selectReviewLineItems(context)).subtotal;
 }
 
-export function selectCompareAtSubtotal(context: BundleSelectorContext): number {
+export function selectCompareAtSubtotal(
+  context: BundleSelectorContext,
+): number {
   return buildPricingSummary(selectReviewLineItems(context)).compareAtSubtotal;
 }
 
@@ -64,7 +65,9 @@ export function selectSavings(context: BundleSelectorContext): number {
   return buildPricingSummary(selectReviewLineItems(context)).savings;
 }
 
-export function selectPricingSummary(context: BundleSelectorContext): PricingSummary {
+export function selectPricingSummary(
+  context: BundleSelectorContext,
+): PricingSummary {
   return buildPricingSummary(selectReviewLineItems(context));
 }
 

@@ -1,3 +1,4 @@
+export * from './classNames';
 export * from './format';
 export * from './pricing';
 export * from './selection';

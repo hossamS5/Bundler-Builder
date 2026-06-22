@@ -1,5 +1,5 @@
-import bundleData from './bundle.json';
-import type { BundleCatalog } from '@/types';
+import bundleData from "./bundle.json";
+import type { BundleCatalog } from "@/types";
 
 export const bundleCatalog = bundleData as BundleCatalog;
 
@@ -16,7 +16,10 @@ export function getProductsForStep(stepIndex: number) {
 
   return step.productIds
     .map((productId) => getProductById(productId))
-    .filter((product): product is NonNullable<typeof product> => product !== undefined);
+    .filter(
+      (product): product is NonNullable<typeof product> =>
+        product !== undefined,
+    );
 }
 
 export function getStepCount() {

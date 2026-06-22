@@ -32,7 +32,9 @@ Feature-based layout with strict separation of concerns:
 - `src/utils/` — pure business logic (pricing, selection helpers, formatting)
 - `src/data/` — JSON catalog + JSON schemas
 - `src/types/` — explicit domain and store types
-- `src/components/` — shared presentational components (UI phase next)
+- `src/components/ui/` — reusable Tailwind primitives (Button, Card, Badge)
+- `src/components/common/` — app-level reusable components (QuantityStepper, PriceDisplay)
+- `src/components/icons/` — inline SVG icons (StepIcon, ChevronIcon)
 - `src/hooks/` — store/selector bridges for React
 
 ## Data
@@ -54,4 +56,6 @@ Foundation complete. UI components are intentionally not implemented yet.
 - Variant quantities are tracked per variant ID; products without variants use `default`.
 - Active variant selection is UI state stored separately from persisted selections.
 - Pricing, savings, and review grouping are computed in selectors/utils, not in components.
-- Initial app state matches the provided design seed data in `bundle.json`.
+- The app loads with **no selections** — the shopper starts from an empty system and builds it up.
+- UI is built with **pure TailwindCSS** (no component library). Reusable primitives live in
+  `src/components/ui/`; the accordion is a custom component driven by Zustand `activeStep`.

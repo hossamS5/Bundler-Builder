@@ -5,7 +5,7 @@
       "name": "Wyze Cam v4",
       "category": "cameras",
       "description": "The clearest Wyze Cam ever made.",
-      "image": "/images/products/wyze-cam-v4-white.png",
+      "image": "/products/wyzeCam-v4-white.svg",
       "price": 27.98,
       "compareAtPrice": 35.98,
       "badge": "Save 22%",
@@ -15,19 +15,19 @@
           "id": "white",
           "name": "White",
           "swatchColor": "#FFFFFF",
-          "image": "/images/products/wyze-cam-v4-white.png"
+          "image": "/products/wyzeCam-v4-white.svg"
         },
         {
           "id": "grey",
           "name": "Grey",
           "swatchColor": "#9CA3AF",
-          "image": "/images/products/wyze-cam-v4-grey.png"
+          "image": "/products/wyzeCam-v4-grey.svg"
         },
         {
           "id": "black",
           "name": "Black",
           "swatchColor": "#111827",
-          "image": "/images/products/wyze-cam-v4-black.png"
+          "image": "/products/wyzeCam-v4-black.svg"
         }
       ]
     },
@@ -36,7 +36,7 @@
       "name": "Wyze Cam Pan v3",
       "category": "cameras",
       "description": "360° pan and 180° tilt security camera.",
-      "image": "/images/products/wyze-cam-pan-v3-white.png",
+      "image": "/products/wyzeCam-v3-white.svg",
       "price": 34.98,
       "compareAtPrice": 39.98,
       "badge": "Save 12%",
@@ -46,13 +46,13 @@
           "id": "white",
           "name": "White",
           "swatchColor": "#FFFFFF",
-          "image": "/images/products/wyze-cam-pan-v3-white.png"
+          "image": "/products/wyzeCam-v3-white.svg"
         },
         {
           "id": "black",
           "name": "Black",
           "swatchColor": "#111827",
-          "image": "/images/products/wyze-cam-pan-v3-black.png"
+          "image": "/products/wyzeCam-v3-black.svg"
         }
       ]
     },
@@ -61,7 +61,7 @@
       "name": "Wyze Cam Floodlight v2",
       "category": "cameras",
       "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
-      "image": "/images/products/wyze-cam-floodlight-v2-white.png",
+      "image": "/products/wyzeCam-v2-white.svg",
       "price": 69.98,
       "compareAtPrice": 89.98,
       "badge": "Save 22%",
@@ -71,13 +71,13 @@
           "id": "white",
           "name": "White",
           "swatchColor": "#FFFFFF",
-          "image": "/images/products/wyze-cam-floodlight-v2-white.png"
+          "image": "/products/wyzeCam-v2-white.svg"
         },
         {
           "id": "black",
           "name": "Black",
           "swatchColor": "#111827",
-          "image": "/images/products/wyze-cam-floodlight-v2-black.png"
+          "image": "/products/wyzeCam-v2-black.svg"
         }
       ]
     },
@@ -86,7 +86,7 @@
       "name": "Wyze Duo Cam Doorbell",
       "category": "cameras",
       "description": "Two cameras. Two views. Double the porch protection.",
-      "image": "/images/products/wyze-duo-cam-doorbell.png",
+      "image": "/products/wyzeCam-doorbell.svg",
       "price": 69.98,
       "learnMoreUrl": "#"
     },
@@ -103,13 +103,13 @@
           "id": "white",
           "name": "White",
           "swatchColor": "#FFFFFF",
-          "image": "/images/products/wyze-battery-cam-pro-white.png"
+          "image": "/products/wyzeCam-pro-white.svg"
         },
         {
           "id": "black",
           "name": "Black",
           "swatchColor": "#111827",
-          "image": "/images/products/wyze-battery-cam-pro-black.png"
+          "image": "/products/wyzeCam-pro-black.svg"
         }
       ]
     },
@@ -244,46 +244,7 @@
   },
   "initialState": {
     "activeStep": 0,
-    "selectedProducts": {
-      "wyze-cam-v4": {
-        "variants": {
-          "white": 1
-        }
-      },
-      "wyze-cam-pan-v3": {
-        "variants": {
-          "black": 2
-        }
-      },
-      "wyze-sense-hub": {
-        "variants": {
-          "default": 1
-        }
-      },
-      "wyze-sense-entry-sensor-v2": {
-        "variants": {
-          "default": 3
-        }
-      },
-      "wyze-sense-climate-sensor-v2": {
-        "variants": {
-          "default": 1
-        }
-      },
-      "sandisk-256gb-microsdxc": {
-        "variants": {
-          "default": 1
-        }
-      },
-      "cam-unlimited": {
-        "variants": {
-          "default": 1
-        }
-      }
-    },
-    "activeVariants": {
-      "wyze-cam-v4": "white",
-      "wyze-cam-pan-v3": "black"
-    }
+    "selectedProducts": {},
+    "activeVariants": {}
   }
 }
