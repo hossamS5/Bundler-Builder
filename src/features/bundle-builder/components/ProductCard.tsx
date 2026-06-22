@@ -41,8 +41,8 @@ export function ProductCard({ product }: ProductCardProps) {
         </Badge>
       ) : null}
 
-      <div className="flex gap-[19px] h-full">
-        <div className="flex justify-center items-center w-[101px] shrink-0 sm:w-28">
+      <div className="flex gap-[19px] h-full flex-col lg:flex-row">
+        <div className="flex justify-center items-center w-[101px] shrink-0 sm:w-28 mx-auto">
           <img
             src={imageSrc}
             alt={product.name}

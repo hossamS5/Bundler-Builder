@@ -125,23 +125,12 @@
       "learnMoreUrl": "#"
     },
     {
-      "id": "fast-shipping",
-      "name": "Fast Shipping",
-      "category": "plan",
-      "description": "Get your order quickly.",
-      "image": "/products/plan-shipping.svg",
-      "price": 0,
-      "compareAtPrice": 5.99,
-      "isMonthly": false,
-      "learnMoreUrl": "#"
-    },
-    {
       "id": "wyze-sense-hub",
       "name": "Wyze Sense Hub",
       "category": "sensors",
       "description": "The brain of your Wyze Sense system.",
       "image": "/products/sensor-hub.svg",
-      "price": "FREE",
+      "price": 0,
       "compareAtPrice": 29.92,
       "metadata": "(Required)",
       "isRequired": true,
@@ -199,7 +188,7 @@
       "title": "Choose your plan",
       "icon": "shield",
       "nextStepLabel": "Next: Choose your sensors",
-      "productIds": ["cam-unlimited", "fast-shipping"]
+      "productIds": ["cam-unlimited"]
     },
     {
       "id": "sensors",
@@ -222,7 +211,7 @@
   ],
   "pricing": {
     "shipping": {
-      "label": "Shipping",
+      "label": "Fast Shipping",
       "price": 0,
       "compareAtPrice": 5.99
     },

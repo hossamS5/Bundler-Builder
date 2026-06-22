@@ -89,7 +89,7 @@ export function Step({
           aria-labelledby={headerId}
           className="px-5 pt-1 pb-2"
         >
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-2">
             {products.map((product, productIndex) => {
               const isLoneLast =
                 productIndex === productCount - 1 && productCount % 2 === 1;
@@ -99,7 +99,7 @@ export function Step({
                   key={product.id}
                   className={cn(
                     isLoneLast &&
-                      "sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.5rem)]",
+                      "lg:col-span-2 lg:mx-auto lg:w-[calc(50%-0.5rem)]",
                   )}
                 >
                   <ProductCard product={product} />

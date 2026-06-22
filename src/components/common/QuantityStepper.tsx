@@ -8,7 +8,19 @@ export interface QuantityStepperProps {
   disabled?: boolean;
   label?: string;
   size?: "sm" | "md";
+  variant?: "default" | "review";
 }
+
+const BUTTON_VARIANT_CLASSES = {
+  default: {
+    enabled: "bg-[#F0F4F7] hover:bg-slate-200",
+    disabled: "bg-white border-[2px] border-[#E6EBF0] hover:bg-slate-50",
+  },
+  review: {
+    enabled: "bg-white border border-[#E6EBF0] hover:bg-[#F8FAFC]",
+    disabled: "bg-white border-[2px] border-[#E6EBF0] hover:bg-slate-50",
+  },
+} as const;
 
 const MinusGlyph = () => (
   <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
@@ -42,18 +54,26 @@ export function QuantityStepper({
   disabled = false,
   label = "Quantity",
   size = "md",
+  variant = "default",
 }: QuantityStepperProps) {
   const isDecrementDisabled = disabled || value <= min;
 
   const buttonSize = size === "sm" ? "h-4 w-4" : "h-5 w-5";
   const valueWidth = size === "sm" ? "w-2 text-sm" : "w-4 text-base";
+  const variantClasses = BUTTON_VARIANT_CLASSES[variant];
 
   const buttonBase = cn(
-    "flex items-center justify-center rounded-[4px] bg-[#F0F4F7] text-[#525963] text-xs transition-colors",
-    "hover:bg-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
-    "disabled:cursor-not-allowed disabled:bg-white disabled:border-[2px] disabled:border-[#E6EBF0] disabled:text-slate-300 disabled:hover:bg-slate-50",
+    "flex items-center justify-center rounded-[4px] text-[#525963] text-xs transition-colors",
+    "focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500",
+    "disabled:cursor-not-allowed disabled:text-slate-300",
     buttonSize,
   );
+
+  const getButtonClassName = (isButtonDisabled: boolean) =>
+    cn(
+      buttonBase,
+      isButtonDisabled ? variantClasses.disabled : variantClasses.enabled,
+    );
 
   return (
     <div
@@ -66,7 +86,7 @@ export function QuantityStepper({
         onClick={onDecrement}
         disabled={isDecrementDisabled}
         aria-label={`Decrease ${label}`}
-        className={buttonBase}
+        className={getButtonClassName(isDecrementDisabled)}
       >
         <MinusGlyph />
       </button>
@@ -83,7 +103,7 @@ export function QuantityStepper({
         onClick={onIncrement}
         disabled={disabled}
         aria-label={`Increase ${label}`}
-        className={buttonBase}
+        className={getButtonClassName(disabled)}
       >
         <PlusGlyph />
       </button>
