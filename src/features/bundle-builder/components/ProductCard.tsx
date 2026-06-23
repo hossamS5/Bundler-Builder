@@ -4,7 +4,6 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import type { Product } from "@/types";
 import { cn } from "@/utils/classNames";
-import { getVariantImage } from "@/utils/selection";
 
 import { useProductSelection } from "../hooks/useProductSelection";
 import { VariantSelector } from "./VariantSelector";
@@ -24,7 +23,6 @@ export function ProductCard({ product }: ProductCardProps) {
   } = useProductSelection(product);
 
   const hasVariants = Boolean(product.variants && product.variants.length > 0);
-  const imageSrc = getVariantImage(product, activeVariantId);
 
   return (
     <Card
@@ -44,7 +42,7 @@ export function ProductCard({ product }: ProductCardProps) {
       <div className="flex gap-[19px] h-full flex-col lg:flex-row">
         <div className="flex justify-center items-center w-[101px] shrink-0 sm:w-28 mx-auto">
           <img
-            src={imageSrc}
+            src={product.image}
             alt={product.name}
             loading="lazy"
             className="object-contain w-full h-[101px] rounded-xl sm:h-28"

@@ -24,6 +24,7 @@ export function ReviewPanel({ className }: ReviewPanelProps) {
 
   return (
     <aside
+      id="review-panel"
       aria-label="Your security system review"
       className={cn(
         "rounded-[10px] bg-[#EDF4FF] px-5 py-[15px] lg:sticky lg:top-6",
@@ -32,10 +33,10 @@ export function ReviewPanel({ className }: ReviewPanelProps) {
     >
       <ReviewHeader />
 
-      <div className="flex flex-col gap-2 mt-4 md:flex-row lg:flex-col">
+      <div className="flex flex-col gap-8 mt-4 lg:gap-2 md:flex-row lg:flex-col">
         <div className="flex-1 min-w-0">
           {hasItems ? (
-            <div>
+            <div className="border-t border-[#DFE5F2]">
               {categoryGroups.map((group) => (
                 <ReviewCategoryGroup key={group.category} group={group} />
               ))}
@@ -54,7 +55,7 @@ export function ReviewPanel({ className }: ReviewPanelProps) {
           </div>
         </div>
 
-        <div className="md:w-[300px] md:shrink-0 lg:w-full">
+        <div className="md:w-[50%] md:shrink-0 lg:w-full">
           <ReviewSummary
             pricing={pricing}
             financing={financing}

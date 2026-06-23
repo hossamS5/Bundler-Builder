@@ -32,6 +32,19 @@ export function Step({
   const panelId = `step-panel-${step.id}`;
   const headerId = `step-header-${step.id}`;
   const productCount = products.length;
+  const hasSelection = selectedCount > 0;
+  const isButtonDisabled = !hasSelection;
+
+  const handleNextClick = () => {
+    if (isLastStep) {
+      document
+        .getElementById("review-panel")
+        ?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    onNext();
+  };
 
   return (
     <div
@@ -112,9 +125,9 @@ export function Step({
             <Button
               variant="outline"
               size="lg"
-              onClick={onNext}
-              disabled={isLastStep}
-              className="min-w-[240px]"
+              onClick={handleNextClick}
+              disabled={isButtonDisabled}
+              className="min-w-[240px] !rounded-[7px]"
             >
               {step.nextStepLabel}
             </Button>

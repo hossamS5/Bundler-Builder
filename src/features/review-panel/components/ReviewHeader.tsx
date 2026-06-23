@@ -1,6 +1,6 @@
 export function ReviewHeader() {
   return (
-    <header>
+    <header className="md:w-[50%] lg:w-full">
       <p className="text-xs uppercase tracking-widest text-[#484848] ">
         Review
       </p>
