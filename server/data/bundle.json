@@ -1,0 +1,229 @@
+{
+  "products": [
+    {
+      "id": "wyze-cam-v4",
+      "name": "Wyze Cam v4",
+      "category": "cameras",
+      "description": "The clearest Wyze Cam ever made.",
+      "image": "/products/wyzeCam-v4.png",
+      "price": 27.98,
+      "compareAtPrice": 35.98,
+      "badge": "Save 22%",
+      "learnMoreUrl": "#",
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchColor": "#FFFFFF",
+          "image": "/products/wyzeCam-v4-white.svg"
+        },
+        {
+          "id": "grey",
+          "name": "Grey",
+          "swatchColor": "#9CA3AF",
+          "image": "/products/wyzeCam-v4-grey.svg"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchColor": "#111827",
+          "image": "/products/wyzeCam-v4-black.svg"
+        }
+      ]
+    },
+    {
+      "id": "wyze-cam-pan-v3",
+      "name": "Wyze Cam Pan v3",
+      "category": "cameras",
+      "description": "360° pan and 180° tilt security camera.",
+      "image": "/products/wyzeCam-v3.png",
+      "price": 34.98,
+      "compareAtPrice": 39.98,
+      "badge": "Save 12%",
+      "learnMoreUrl": "#",
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchColor": "#FFFFFF",
+          "image": "/products/wyzeCam-v3-white.svg"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchColor": "#111827",
+          "image": "/products/wyzeCam-v3-black.svg"
+        }
+      ]
+    },
+    {
+      "id": "wyze-cam-floodlight-v2",
+      "name": "Wyze Cam Floodlight v2",
+      "category": "cameras",
+      "description": "2K floodlight camera with a 160° wide-angle view for your garage.",
+      "image": "/products/wyzeCam-v2.png",
+      "price": 69.98,
+      "compareAtPrice": 89.98,
+      "badge": "Save 22%",
+      "learnMoreUrl": "#",
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchColor": "#FFFFFF",
+          "image": "/products/wyzeCam-v2-white.svg"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchColor": "#111827",
+          "image": "/products/wyzeCam-v2-black.svg"
+        }
+      ]
+    },
+    {
+      "id": "wyze-duo-cam-doorbell",
+      "name": "Wyze Duo Cam Doorbell",
+      "category": "cameras",
+      "description": "Two cameras. Two views. Double the porch protection.",
+      "image": "/products/wyzeCam-doorbell.svg",
+      "price": 69.98,
+      "learnMoreUrl": "#"
+    },
+    {
+      "id": "wyze-battery-cam-pro",
+      "name": "Wyze Battery Cam Pro",
+      "category": "cameras",
+      "description": "Protect anywhere. See everything in 2.5K HDR. No power outlet or electrician needed.",
+      "image": "/products/wyzeCam-pro.png",
+      "price": 89.98,
+      "learnMoreUrl": "#",
+      "variants": [
+        {
+          "id": "white",
+          "name": "White",
+          "swatchColor": "#FFFFFF",
+          "image": "/products/wyzeCam-pro-white.svg"
+        },
+        {
+          "id": "black",
+          "name": "Black",
+          "swatchColor": "#111827",
+          "image": "/products/wyzeCam-pro-black.svg"
+        }
+      ]
+    },
+    {
+      "id": "cam-unlimited",
+      "name": "Cam Unlimited",
+      "category": "plan",
+      "description": "14-day cloud storage and smart detections on all your Wyze cams.",
+      "image": "/products/plan-unlimited.svg",
+      "price": 9.99,
+      "compareAtPrice": 12.99,
+      "isMonthly": true,
+      "learnMoreUrl": "#"
+    },
+    {
+      "id": "wyze-sense-hub",
+      "name": "Wyze Sense Hub",
+      "category": "sensors",
+      "description": "The brain of your Wyze Sense system.",
+      "image": "/products/sensor-hub.svg",
+      "price": 0,
+      "compareAtPrice": 29.92,
+      "metadata": "(Required)",
+      "isRequired": true,
+      "learnMoreUrl": "#"
+    },
+    {
+      "id": "wyze-sense-entry-sensor-v2",
+      "name": "Wyze Sense Motion Sensor",
+      "category": "sensors",
+      "description": "Motion detection sensor for your Wyze Cam.",
+      "image": "/products/sensor-motion.svg",
+      "price": 59.98,
+      "learnMoreUrl": "#"
+    },
+
+    {
+      "id": "sandisk-256gb-microsdxc",
+      "name": "SanDisk 256GB microSDXC",
+      "category": "accessories",
+      "description": "High-endurance storage for continuous recording.",
+      "image": "/products/plan-unlimited.svg",
+      "price": 37.98,
+      "compareAtPrice": 29.99,
+      "metadata": "(256GB)",
+      "learnMoreUrl": "#"
+    },
+    {
+      "id": "wyze-microsd-card-128gb",
+      "name": "Wyze microSD Card 128GB",
+      "category": "accessories",
+      "description": "Reliable local storage for Wyze cams.",
+      "image": "/products/plan-unlimited.svg",
+      "price": 19.99,
+      "compareAtPrice": 24.99,
+      "metadata": "(128GB)",
+      "learnMoreUrl": "#"
+    }
+  ],
+  "steps": [
+    {
+      "id": "cameras",
+      "title": "Choose your cameras",
+      "icon": "camera",
+      "nextStepLabel": "Next: Choose your plan",
+      "productIds": [
+        "wyze-cam-v4",
+        "wyze-cam-pan-v3",
+        "wyze-cam-floodlight-v2",
+        "wyze-duo-cam-doorbell",
+        "wyze-battery-cam-pro"
+      ]
+    },
+    {
+      "id": "plan",
+      "title": "Choose your plan",
+      "icon": "shield",
+      "nextStepLabel": "Next: Choose your sensors",
+      "productIds": ["cam-unlimited"]
+    },
+    {
+      "id": "sensors",
+      "title": "Choose your sensors",
+      "icon": "sensor",
+      "nextStepLabel": "Next: Add extra protection",
+      "productIds": [
+        "wyze-sense-hub",
+        "wyze-sense-entry-sensor-v2",
+        "wyze-sense-climate-sensor-v2"
+      ]
+    },
+    {
+      "id": "extra-protection",
+      "title": "Add extra protection",
+      "icon": "protection",
+      "nextStepLabel": "Review your system",
+      "productIds": ["sandisk-256gb-microsdxc", "wyze-microsd-card-128gb"]
+    }
+  ],
+  "pricing": {
+    "shipping": {
+      "label": "Fast Shipping",
+      "price": 0,
+      "compareAtPrice": 5.99
+    },
+    "financing": {
+      "label": "as low as $19.19/mo",
+      "monthlyAmount": 19.19
+    },
+    "satisfactionGuaranteeLabel": "100% satisfaction guarantee"
+  },
+  "initialState": {
+    "activeStep": 0,
+    "selectedProducts": {},
+    "activeVariants": {}
+  }
+}

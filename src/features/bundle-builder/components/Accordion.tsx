@@ -1,17 +1,22 @@
 import { getProductsForStep } from "@/data";
+import { useCatalog } from "@/features/catalog";
 import { selectSelectedCountPerStep, selectSteps } from "@/selectors";
 import { useBundleStore } from "@/store";
 
 import { Step } from "./Step";
 
 export function BundleAccordion() {
+  const catalog = useCatalog();
   const activeStep = useBundleStore((state) => state.activeStep);
   const selectedProducts = useBundleStore((state) => state.selectedProducts);
   const setActiveStep = useBundleStore((state) => state.setActiveStep);
   const goToNextStep = useBundleStore((state) => state.goToNextStep);
 
-  const steps = selectSteps();
-  const selectedCountPerStep = selectSelectedCountPerStep({ selectedProducts });
+  const steps = selectSteps(catalog);
+  const selectedCountPerStep = selectSelectedCountPerStep({
+    catalog,
+    selectedProducts,
+  });
 
   const handleToggle = (index: number) => {
     setActiveStep(index === activeStep ? -1 : index);
@@ -25,7 +30,7 @@ export function BundleAccordion() {
           step={step}
           index={index}
           totalSteps={steps.length}
-          products={getProductsForStep(index)}
+          products={getProductsForStep(catalog, index)}
           isOpen={index === activeStep}
           selectedCount={selectedCountPerStep[index] ?? 0}
           isLastStep={index === steps.length - 1}

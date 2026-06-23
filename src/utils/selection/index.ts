@@ -10,3 +10,10 @@ export {
   isProductSelected,
   resolveVariantId,
 } from './productSelection';
+
+export {
+  buildSelectedReviewLineItems,
+  getSelectedCountPerStep,
+  getSelectedProducts,
+  reconcileSelections,
+} from './selectedProducts';

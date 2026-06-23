@@ -1,5 +1,4 @@
-import type { ReviewLineItem, SelectedProducts } from '@/types';
-import { bundleCatalog } from '@/data';
+import type { BundleCatalog, ReviewLineItem, SelectedProducts } from '@/types';
 import {
   getProductLineName,
   getVariantImage,
@@ -7,11 +6,12 @@ import {
 } from '@/utils/selection';
 
 function buildReviewLineItem(
+  catalog: BundleCatalog,
   productId: string,
   variantId: string,
   quantity: number,
 ): ReviewLineItem | null {
-  const product = bundleCatalog.products.find((item) => item.id === productId);
+  const product = catalog.products.find((item) => item.id === productId);
 
   if (!product) {
     return null;
@@ -39,6 +39,7 @@ function buildReviewLineItem(
 }
 
 export function buildSelectedReviewLineItems(
+  catalog: BundleCatalog,
   selectedProducts: SelectedProducts,
 ): ReviewLineItem[] {
   const lineItems: ReviewLineItem[] = [];
@@ -49,7 +50,7 @@ export function buildSelectedReviewLineItems(
         continue;
       }
 
-      const lineItem = buildReviewLineItem(productId, variantId, quantity);
+      const lineItem = buildReviewLineItem(catalog, productId, variantId, quantity);
 
       if (lineItem) {
         lineItems.push(lineItem);
@@ -60,12 +61,18 @@ export function buildSelectedReviewLineItems(
   return lineItems;
 }
 
-export function getSelectedProducts(selectedProducts: SelectedProducts) {
-  return buildSelectedReviewLineItems(selectedProducts);
+export function getSelectedProducts(
+  catalog: BundleCatalog,
+  selectedProducts: SelectedProducts,
+) {
+  return buildSelectedReviewLineItems(catalog, selectedProducts);
 }
 
-export function getSelectedCountPerStep(selectedProducts: SelectedProducts) {
-  return bundleCatalog.steps.map((step) => {
+export function getSelectedCountPerStep(
+  catalog: BundleCatalog,
+  selectedProducts: SelectedProducts,
+) {
+  return catalog.steps.map((step) => {
     const productIds = new Set(step.productIds);
 
     return Object.entries(selectedProducts).reduce((count, [productId, selection]) => {
@@ -80,4 +87,45 @@ export function getSelectedCountPerStep(selectedProducts: SelectedProducts) {
       return hasSelection ? count + 1 : count;
     }, 0);
   });
+}
+
+/**
+ * Drops persisted selections that no longer exist in the catalog (unknown
+ * products / variants) and prunes non-positive quantities. Keeps the store
+ * consistent with whatever the backend currently serves.
+ */
+export function reconcileSelections(
+  catalog: BundleCatalog,
+  selectedProducts: SelectedProducts,
+): SelectedProducts {
+  const reconciled: SelectedProducts = {};
+
+  for (const [productId, selection] of Object.entries(selectedProducts)) {
+    const product = catalog.products.find((item) => item.id === productId);
+
+    if (!product) {
+      continue;
+    }
+
+    const validVariantIds = new Set(
+      (product.variants ?? []).map((variant) => variant.id),
+    );
+
+    const variants: Record<string, number> = {};
+
+    for (const [variantId, quantity] of Object.entries(selection.variants)) {
+      const isKnownVariant =
+        validVariantIds.size === 0 || validVariantIds.has(variantId);
+
+      if (isKnownVariant && quantity > 0) {
+        variants[variantId] = quantity;
+      }
+    }
+
+    if (Object.keys(variants).length > 0) {
+      reconciled[productId] = { variants };
+    }
+  }
+
+  return reconciled;
 }

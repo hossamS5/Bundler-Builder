@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 
+import { useCatalog } from "@/features/catalog";
 import {
   selectFinancingConfig,
   selectPricingSummary,
@@ -31,20 +32,21 @@ export interface ReviewPanelViewModel {
  * All values come from selectors — no business logic lives in components.
  */
 export function useReviewPanel(): ReviewPanelViewModel {
+  const catalog = useCatalog();
   const selectedProducts = useBundleStore((state) => state.selectedProducts);
 
   return useMemo(() => {
-    const context = { selectedProducts };
+    const context = { catalog, selectedProducts };
     const lineItems = selectReviewLineItems(context);
 
     return {
       categoryGroups: selectReviewCategoryGroups(context),
       hasItems: lineItems.length > 0,
       itemCount: lineItems.reduce((total, item) => total + item.quantity, 0),
-      shipping: selectShippingLineItem(),
-      financing: selectFinancingConfig(),
-      guaranteeLabel: selectSatisfactionGuaranteeLabel(),
+      shipping: selectShippingLineItem(catalog),
+      financing: selectFinancingConfig(catalog),
+      guaranteeLabel: selectSatisfactionGuaranteeLabel(catalog),
       pricing: selectPricingSummary(context),
     };
-  }, [selectedProducts]);
+  }, [catalog, selectedProducts]);
 }

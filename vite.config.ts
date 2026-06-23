@@ -10,4 +10,14 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  server: {
+    proxy: {
+      // Proxy API calls to the backend during development so the frontend can
+      // use a relative `/api` base URL (no CORS, no hardcoded host).
+      "/api": {
+        target: "http://localhost:4000",
+        changeOrigin: true,
+      },
+    },
+  },
 });

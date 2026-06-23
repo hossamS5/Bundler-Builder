@@ -16,15 +16,17 @@ import {
   selectSubtotal,
   selectTotal,
 } from "@/selectors";
+import { useCatalog } from "@/features/catalog";
 import { useBundleStore } from "@/store";
 
 export function useBundleSelectors() {
+  const catalog = useCatalog();
   const selectedProducts = useBundleStore((state) => state.selectedProducts);
   const activeStep = useBundleStore((state) => state.activeStep);
   const activeVariants = useBundleStore((state) => state.activeVariants);
 
   return useMemo(() => {
-    const context = { selectedProducts };
+    const context = { catalog, selectedProducts };
 
     return {
       activeStep,
@@ -40,10 +42,10 @@ export function useBundleSelectors() {
       total: selectTotal(context),
       savings: selectSavings(context),
       pricingSummary: selectPricingSummary(context),
-      shipping: selectShippingLineItem(),
-      financing: selectFinancingConfig(),
-      satisfactionGuaranteeLabel: selectSatisfactionGuaranteeLabel(),
-      steps: selectSteps(),
+      shipping: selectShippingLineItem(catalog),
+      financing: selectFinancingConfig(catalog),
+      satisfactionGuaranteeLabel: selectSatisfactionGuaranteeLabel(catalog),
+      steps: selectSteps(catalog),
     };
-  }, [activeStep, activeVariants, selectedProducts]);
+  }, [catalog, activeStep, activeVariants, selectedProducts]);
 }

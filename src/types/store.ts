@@ -1,12 +1,15 @@
-import type { SelectedProducts } from './domain';
+import type { BundleCatalog, SelectedProducts } from './domain';
 
 export interface BundleState {
   activeStep: number;
   selectedProducts: SelectedProducts;
   activeVariants: Record<string, string>;
+  /** Number of steps in the loaded catalog. 0 until hydrated. */
+  stepCount: number;
 }
 
 export interface BundleActions {
+  hydrateFromCatalog: (catalog: BundleCatalog) => void;
   setActiveStep: (step: number) => void;
   goToNextStep: () => void;
   setActiveVariant: (productId: string, variantId: string) => void;

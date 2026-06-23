@@ -1,22 +1,27 @@
-import type { PricingSummary, ReviewLineItem } from '@/types';
-import { bundleCatalog } from '@/data';
+import type { PricingSummary, ReviewLineItem, ShippingConfig } from '@/types';
 
-export function calculateSubtotal(lineItems: ReviewLineItem[]): number {
+export function calculateSubtotal(
+  lineItems: ReviewLineItem[],
+  shipping: ShippingConfig,
+): number {
   const productSubtotal = lineItems.reduce(
     (total, item) => total + item.linePrice,
     0,
   );
 
-  return productSubtotal + bundleCatalog.pricing.shipping.price;
+  return productSubtotal + shipping.price;
 }
 
-export function calculateCompareAtSubtotal(lineItems: ReviewLineItem[]): number {
+export function calculateCompareAtSubtotal(
+  lineItems: ReviewLineItem[],
+  shipping: ShippingConfig,
+): number {
   const productCompareAtSubtotal = lineItems.reduce(
     (total, item) => total + item.lineCompareAtPrice,
     0,
   );
 
-  return productCompareAtSubtotal + bundleCatalog.pricing.shipping.compareAtPrice;
+  return productCompareAtSubtotal + shipping.compareAtPrice;
 }
 
 export function calculateDiscount(
@@ -37,9 +42,12 @@ export function calculateSavings(
   return calculateDiscount(subtotal, compareAtSubtotal);
 }
 
-export function buildPricingSummary(lineItems: ReviewLineItem[]): PricingSummary {
-  const subtotal = calculateSubtotal(lineItems);
-  const compareAtSubtotal = calculateCompareAtSubtotal(lineItems);
+export function buildPricingSummary(
+  lineItems: ReviewLineItem[],
+  shipping: ShippingConfig,
+): PricingSummary {
+  const subtotal = calculateSubtotal(lineItems, shipping);
+  const compareAtSubtotal = calculateCompareAtSubtotal(lineItems, shipping);
   const discount = calculateDiscount(subtotal, compareAtSubtotal);
   const total = calculateTotal(subtotal);
   const savings = calculateSavings(subtotal, compareAtSubtotal);

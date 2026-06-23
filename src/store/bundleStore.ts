@@ -1,42 +1,47 @@
 import { create } from "zustand";
 
-import { bundleCatalog } from "@/data";
 import { loadPersistedBundleState } from "@/features/persistence";
 import type { BundleStore } from "@/types";
-import { clampQuantity } from "@/utils/selection";
+import { clampQuantity, reconcileSelections } from "@/utils/selection";
 
-function cloneSelectedProducts() {
-  return structuredClone(bundleCatalog.initialState.selectedProducts);
-}
+const DEFAULT_ACTIVE_STEP = 0;
 
 function createInitialState(): Pick<
   BundleStore,
-  "activeStep" | "selectedProducts" | "activeVariants"
+  "activeStep" | "selectedProducts" | "activeVariants" | "stepCount"
 > {
   const persistedState = loadPersistedBundleState();
 
-  if (persistedState) {
-    return {
-      activeStep: persistedState.activeStep,
-      selectedProducts: structuredClone(persistedState.selectedProducts),
-      activeVariants: structuredClone(
-        bundleCatalog.initialState.activeVariants,
-      ),
-    };
-  }
-
   return {
-    activeStep: bundleCatalog.initialState.activeStep,
-    selectedProducts: cloneSelectedProducts(),
-    activeVariants: structuredClone(bundleCatalog.initialState.activeVariants),
+    activeStep: persistedState?.activeStep ?? DEFAULT_ACTIVE_STEP,
+    selectedProducts: persistedState
+      ? structuredClone(persistedState.selectedProducts)
+      : {},
+    activeVariants: {},
+    // Populated once the catalog is loaded from the backend (hydrateFromCatalog).
+    stepCount: 0,
   };
 }
 
 export const useBundleStore = create<BundleStore>((set, get) => ({
   ...createInitialState(),
 
+  hydrateFromCatalog: (catalog) => {
+    set((state) => {
+      const maxStep = catalog.steps.length - 1;
+
+      return {
+        stepCount: catalog.steps.length,
+        // Drop any persisted selections that no longer exist in the catalog.
+        selectedProducts: reconcileSelections(catalog, state.selectedProducts),
+        activeStep: Math.min(Math.max(state.activeStep, -1), maxStep),
+      };
+    });
+  },
+
   setActiveStep: (step) => {
-    const maxStep = bundleCatalog.steps.length - 1;
+    const { stepCount } = get();
+    const maxStep = stepCount > 0 ? stepCount - 1 : step;
     // -1 is a valid "no step expanded" (collapsed) state for the accordion.
     const nextStep = Math.min(Math.max(step, -1), maxStep);
 
@@ -104,11 +109,9 @@ export const useBundleStore = create<BundleStore>((set, get) => ({
 
   resetToInitial: () => {
     set({
-      activeStep: bundleCatalog.initialState.activeStep,
-      selectedProducts: cloneSelectedProducts(),
-      activeVariants: structuredClone(
-        bundleCatalog.initialState.activeVariants,
-      ),
+      activeStep: DEFAULT_ACTIVE_STEP,
+      selectedProducts: {},
+      activeVariants: {},
     });
   },
 }));
